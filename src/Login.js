@@ -13,7 +13,7 @@ function Login() {
       style={{ minHeight: "100vh" }}
     >
       <a className="btn btn-success btn-large" href={AUTH_URL}>
-        Log In With Spotify hi test
+        Log In With Spotify
       </a>
     </Container>
   );

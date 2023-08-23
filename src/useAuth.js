@@ -13,10 +13,11 @@ function useAuth(code) {
       })
       .then((res) => {
         console.log(res.data);
+        window.history.pushState({}, null, '/')
       })
-      // .catch(() => {
-      //   window.location = "/";
-      // });
+      .catch(() => {
+        window.location = '/'
+      })
   }, [code]);
 }
 export default useAuth;

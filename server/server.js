@@ -15,19 +15,20 @@ app.post("/login", (req, res) => {
     clientSecret: process.env.REACT_APP_CLIENT_SECRET,
   });
 
-  spotifyApi
-    .authorizationCodeGrant(code)
-    .then((data) => {
-      res.json({
-        accessToken: data.body.access_token,
-        refreshToken: data.body.refresh_token,
-        expiresIn: data.body.expires_in,
-      });
-    })
-    .catch((err) => {
-      console.log(err)
-      res.sendStatus(400);
-    });
+  spotifyApi.authorizationCodeGrant(code).then(
+    function(data) {
+      console.log('The token expires in ' + data.body['expires_in']);
+      console.log('The access token is ' + data.body['access_token']);
+      console.log('The refresh token is ' + data.body['refresh_token']);
+  
+      // Set the access token on the API object to use it in later calls
+      spotifyApi.setAccessToken(data.body['access_token']);
+      spotifyApi.setRefreshToken(data.body['refresh_token']);
+    },
+    function(err) {
+      console.log('Something went wrong!', err);
+    }
+  );
 });
 
 app.listen(3001)
