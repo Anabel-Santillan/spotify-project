@@ -3,7 +3,7 @@ const express = require("express");
 const SpotifyWebApi = require("spotify-web-api-node");
 const bodyParser = require("body-parser")
 const cors = require("cors");
-const { body } = require("express-validator");
+// const { body } = require("express-validator");
 const app = express();
 app.use(cors())
 app.use(bodyParser.json())
